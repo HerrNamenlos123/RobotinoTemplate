@@ -1,7 +1,9 @@
 
+#include "test.h"
 #include <iostream>
 
 int main() {
-    std::cout << "Hello world" << std::endl;
-    system("Pause");
+    test();
+    std::cout << "Press Enter";
+    std::cin.get();
 }
