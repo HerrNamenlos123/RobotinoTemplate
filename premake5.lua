@@ -50,4 +50,11 @@ project "RobotinoTest"
     filter { "platforms:x64" }
         system "Windows"
         architecture "x86_64"
-
+    filter {}
+    
+    
+    defines { 
+        "_CRT_SECURE_NO_WARNINGS", 
+        "WIN32",
+        "SPDLOG_COMPILED_LIB"
+    }
