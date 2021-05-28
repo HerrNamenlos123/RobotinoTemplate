@@ -6,6 +6,9 @@ sheesh
 
 # Building
 
-Windows: Double-click ```generate-win.bat```
+## Windows
++ Double-click ```generate-win.bat```
++ Open .sln file in Visual Studio 2019 and build
 
-Linux: Not implemented/tested yet
+## Linux
++ Not implemented/tested yet
