@@ -2,9 +2,9 @@
 
 sheesh
 
-    git clone --recursive https://github.com/HerrNamenlos123/RobotinoTest.git
-
 # Building
+
+    git clone --recursive https://github.com/HerrNamenlos123/RobotinoTest.git
 
 ## Windows
 + Double-click ```generate-win.bat```
