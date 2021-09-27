@@ -24,6 +24,5 @@ int main() {
     }
 
     LOG_DEBUG("Application stopped properly");
-    std::cout << "Press Enter";
-    std::cin.get();
+    system("Pause");
 }

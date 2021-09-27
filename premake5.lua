@@ -1,35 +1,30 @@
 
--- Main Project declaration
-project "RobotinoTest"
-    kind "ConsoleApp"
+-- Retrieve the project name
+newoption { trigger = "projectname", description = "Name of the generated project" }
+local projectName = _OPTIONS["projectname"]
+if projectName == nil then print("The project name was not specified! --projectname=YourApplication") end
+
+-- Main Solution
+workspace (projectName)
+    configurations { "Debug", "Release" }
+
+    platforms { "x86", "x64" }
+    defaultplatform "x86"
+    startproject (projectName)
+
+-- Actual project
+project (projectName)
     language "C++"
 	cppdialect "C++17"
 	staticruntime "on"
     location "build"
+    targetname (projectName)
 
-    -- Local paths
-    local includes = { _SCRIPT_DIR .. "/include" }
-    local sources = { _SCRIPT_DIR .. "/include/**", _SCRIPT_DIR .. "/src/**" }
-    local outputdir = _SCRIPT_DIR .. "/bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-    local link = { "RobotinoLib" }
+    system "Windows"
+    kind "ConsoleApp"
 
-    -- Add paths to the higher level instance (top level project)
-    for _,v in ipairs(includes) do table.insert(IncludeDirs, v) end
-    for _,v in ipairs(sources) do table.insert(SourceFiles, v) end
-    table.insert(LibraryDirs, outputdir)
-    table.insert(Links, link)
-
-    ---- Main source files
-    includedirs (includes)
-    files (sources)
-    targetdir (outputdir)
-    links (link)
-
-    -- Organize the files in the Visual Studio project view
-    vpaths {
-        ["include"] = { _SCRIPT_DIR .. "/include/**" },
-        ["src"] = { _SCRIPT_DIR .. "/src/**" }
-    }
+    --pchheader "pch.h"
+    --pchsource "src/pch.cpp"
 
     -- Configuration filters, filters are active up to the next filter statement
     -- Indentation is purely visual
@@ -37,24 +32,31 @@ project "RobotinoTest"
         defines { "DEBUG", "_DEBUG" }
         runtime "Debug"
         symbols "On"
-
     filter "configurations:Release"
         defines { "NDEBUG" }
         runtime "Release"
         optimize "On"
+    filter {}
 
-    filter { "platforms:Win32" }
-        system "Windows"
+    filter "platforms:x86"
         architecture "x86"
-
-    filter { "platforms:x64" }
-        system "Windows"
+    filter "platforms:x64"
         architecture "x86_64"
     filter {}
+
+    filter { "configurations:Debug", "platforms:x86" }
+        links { "$(ROBOTINOLIB_DEBUG32_LINKS)" }
+        targetdir (_SCRIPT_DIR .. "/bin/Debug/x86")
+    filter { "configurations:Debug", "platforms:x64" }
+        links { "$(ROBOTINOLIB_DEBUG64_LINKS)" }
+        targetdir (_SCRIPT_DIR .. "/bin/Debug/x64")
+    filter { "configurations:Release", "platforms:x86" }
+        links { "$(ROBOTINOLIB_RELEASE32_LINKS)" }
+        targetdir (_SCRIPT_DIR .. "/bin/Release/x86")
+    filter { "configurations:Release", "platforms:x64" }
+        links { "$(ROBOTINOLIB_RELEASE64_LINKS)" }
+        targetdir (_SCRIPT_DIR .. "/bin/Release/x64")
+    filter {}
     
-    
-    defines { 
-        "_CRT_SECURE_NO_WARNINGS", 
-        "WIN32",
-        "SPDLOG_COMPILED_LIB"
-    }
+    includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
+    files { _SCRIPT_DIR .. "/include/**", _SCRIPT_DIR .. "/src/**" }

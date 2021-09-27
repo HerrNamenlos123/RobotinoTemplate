@@ -16,5 +16,19 @@
 :: xcode4            Generate Apple Xcode 4 project files
 
 :: Replace the generator here
-%~dp0premake5\windows\premake5.exe vs2019 --file=%~dp0workspace.lua
-Pause
+set _generator=vs2019
+
+:: ===================================================================
+set _projectfile=
+for /f "delims=" %%F in ('dir "%~dp0*.sln" /b /o-n') do set _projectfile=%%F
+
+IF [%_projectfile%] == [] (
+    set /p _projectname="Enter the project name: "
+) ELSE (
+    set _projectname=%_projectfile:~0,-4%
+)
+
+echo Generating project '%_projectname%'
+
+call "%~dp0premake5\windows\premake5.exe" %_generator% --file="%~dp0premake5.lua" --projectname=%_projectname% && start %_projectname%.sln
+Timeout 5
