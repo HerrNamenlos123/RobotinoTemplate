@@ -28,6 +28,8 @@ IF [%_projectfile%] == [] (
     set _projectname=%_projectfile:~0,-4%
 )
 
+if not "%_projectname%"=="%_projectname: =%" echo [91mThe project name must not contain spaces![0m && Pause && exit 1
+
 echo Generating project '%_projectname%'
 
 call "%~dp0premake5\windows\premake5.exe" %_generator% --file="%~dp0premake5.lua" --projectname=%_projectname% && start %_projectname%.sln
