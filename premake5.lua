@@ -61,7 +61,7 @@ project (projectName)
     filter { "system:not windows" }
         includedirs { _SCRIPT_DIR .. "/include", "/usr/local/include/" }
         libdirs "/usr/local/bin/"
-        links { "rec_robotino_api2", "RobotinoLib", "rec_rpc" }
+        links { "rec_robotino_api2", "RobotinoLib" }
     filter {}
     
     files { _SCRIPT_DIR .. "/include/**", _SCRIPT_DIR .. "/src/**" }
