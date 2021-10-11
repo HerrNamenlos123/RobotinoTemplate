@@ -6,11 +6,15 @@ if projectName == nil then print("The project name was not specified! --projectn
 
 -- Main Solution
 workspace (projectName)
-    configurations { "Debug", "Release" }
+    configurations { "Debug", "Release", "Deploy" }
 
     platforms { "x64" }
     defaultplatform "x64"
     startproject (projectName)
+    
+    filter "system:not windows"
+    	location "build"
+    filter {}
 
 -- Actual project
 project (projectName)
@@ -20,7 +24,6 @@ project (projectName)
     location "build"
     targetname (projectName)
 
-    system "Windows"
     kind "ConsoleApp"
     architecture "x86_64"
 
@@ -30,18 +33,35 @@ project (projectName)
     -- Configuration filters, filters are active up to the next filter statement
     -- Indentation is purely visual
     filter "configurations:Debug"
-        defines { "DEBUG", "_DEBUG" }
+        defines { "DEBUG", "_DEBUG", "NDEPLOY" }
         runtime "Debug"
         symbols "On"
-        links { "$(ROBOTINOLIB_DEBUG_LINKS)" }
         targetdir (_SCRIPT_DIR .. "/bin/Debug")
     filter "configurations:Release"
-        defines { "NDEBUG" }
+        defines { "NDEBUG", "NDEPLOY" }
         runtime "Release"
         optimize "On"
-        links { "$(ROBOTINOLIB_RELEASE_LINKS)" }
         targetdir (_SCRIPT_DIR .. "/bin/Release")
+    filter "configurations:Deploy"
+        defines { "NDEBUG", "DEPLOY" }
+        runtime "Release"
+        optimize "On"
+        targetdir (_SCRIPT_DIR .. "/bin/Deploy")
+    filter {}
+
+    filter { "configurations:Debug", "system:windows" }
+        includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
+        links { "$(ROBOTINOLIB_DEBUG_LINKS)" }
+    filter { "configurations:Release", "system:windows" }
+        includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
+        links { "$(ROBOTINOLIB_RELEASE_LINKS)" }
+    filter { "configurations:Deploy", "system:windows" }
+        includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
+        links { "$(ROBOTINOLIB_RELEASE_LINKS)" }
+    filter { "system:not windows" }
+        includedirs { _SCRIPT_DIR .. "/include", "/usr/local/include/" }
+        libdirs "/usr/local/bin/"
+        links { "rec_robotino_api2", "RobotinoLib" }
     filter {}
     
-    includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
     files { _SCRIPT_DIR .. "/include/**", _SCRIPT_DIR .. "/src/**" }
