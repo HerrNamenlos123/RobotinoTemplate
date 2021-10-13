@@ -4,12 +4,14 @@
 #include "RobotinoAction.h"
 #include "Robotino/RobotinoApi2.h"
 
+#pragma warning( disable : 4101 )	// Suppress warning about unused variable 'e' (Only in this .cpp file)
+
 int main() {
 
     try {
         RobotinoAction();
     }
-    catch (Robotino::NotConnectedException e) {
+    catch (const Robotino::NotConnectedException& e) {
         LOG_CRITICAL("Robotino is not connected!");
         rec::robotino::api2::shutdown();
         return 0;

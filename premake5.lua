@@ -59,7 +59,8 @@ project (projectName)
     filter { "configurations:Deploy", "system:windows" }
         includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
         links { "$(ROBOTINOLIB_DEPLOY_LINKS)" }
-    filter { "system:not windows" }
+
+    filter { "system:not windows" } -- TODO: ADD CONFIGURATIONS ===========================================================
         includedirs { _SCRIPT_DIR .. "/include", "/usr/local/include/" }
         libdirs "/usr/local/bin/"
         links { "rec_robotino_api2", "RobotinoLib" }
@@ -67,19 +68,3 @@ project (projectName)
     
     -- Main source files
     files { _SCRIPT_DIR .. "/include/**", _SCRIPT_DIR .. "/src/**" }
-    
-    -- RobotinoApi2 binaries (windows only)
-    filter "system:windows"
-        local source1 = "$(ROBOTINOLIB_BINARY_DIR)/rec_robotino_api2.dll"
-        local target = _SCRIPT_DIR .. "/bin/%{cfg.buildcfg}"
-        
-        local source2 = "$(ROBOTINOLIB_BINARY_DIR)/rec_robotino_rpc.dll"
-        
-        local source3 = "$(ROBOTINOLIB_BINARY_DIR)/rec_rpc.dll"
-
-        postbuildcommands { 
-            "IF NOT EXIST \"" .. target .. "/rec_robotino_api2.dll\" xcopy /b /y /f /i /v \"" .. source1 .. "\" \"" .. target .. "\" && echo " .. source1 .. " -> " .. target .. "/rec_robotino_api2.dll",
-            "IF NOT EXIST \"" .. target .. "/rec_robotino_rpc.dll\" xcopy /b /y /f /i /v \"" .. source2 .. "\" \"" .. target .. "\" && echo " .. source2 .. " -> " .. target .. "/rec_robotino_rpc.dll",
-            "IF NOT EXIST \"" .. target .. "/rec_rpc.dll\" xcopy /b /y /f /i /v \"" .. source3 .. "\" \"" .. target .. "\" && echo " .. source3 .. " -> " .. target .. "/rec_rpc.dll"
-        }
-    filter {}
