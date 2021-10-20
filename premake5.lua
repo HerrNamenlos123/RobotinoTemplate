@@ -4,6 +4,22 @@ newoption { trigger = "projectname", description = "Name of the generated projec
 local projectName = _OPTIONS["projectname"]
 if projectName == nil then print("The project name was not specified! --projectname=YourApplication") end
 
+-- Check if an environment variable exists, otherwise abort the program
+function CheckEnvVar (variable, productName)
+    if (os.getenv(variable) == nil) then
+        print("Environment variable " .. variable .. " not found! Make sure the " .. productName .. " is installed correctly!")
+        projectName = nil
+    end
+end
+
+-- Here check if the RobotinoLib is installed, otherwise abort
+if os.host() == "windows" then
+    CheckEnvVar("ROBOTINOLIB_INCLUDE_DIRECTORY", "RobotinoLib")
+    CheckEnvVar("ROBOTINOLIB_DEBUG_LINKS", "RobotinoLib")
+    CheckEnvVar("ROBOTINOLIB_RELEASE_LINKS", "RobotinoLib")
+    CheckEnvVar("ROBOTINOLIB_DEPLOY_LINKS", "RobotinoLib")
+end
+
 -- Main Solution
 workspace (projectName)
     configurations { "Debug", "Release", "Deploy" }
