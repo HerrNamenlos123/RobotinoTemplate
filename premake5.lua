@@ -66,20 +66,29 @@ project (projectName)
     filter {}
 
     -- Include directories and library linking
-    filter { "configurations:Debug", "system:windows" }
-        includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
+    filter { "configurations:Debug", "system:windows" }     -- Windows Debug
         links { "$(ROBOTINOLIB_DEBUG_LINKS)" }
-    filter { "configurations:Release", "system:windows" }
-        includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
+    filter { "configurations:Release", "system:windows" }   -- Windows Release
         links { "$(ROBOTINOLIB_RELEASE_LINKS)" }
-    filter { "configurations:Deploy", "system:windows" }
-        includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
+    filter { "configurations:Deploy", "system:windows" }    -- Windows Deploy
         links { "$(ROBOTINOLIB_DEPLOY_LINKS)" }
 
-    filter { "system:not windows" } -- TODO: ADD CONFIGURATIONS ===========================================================
+    filter { "system:windows" }         -- Windows
+        includedirs { _SCRIPT_DIR .. "/include", "$(ROBOTINOLIB_INCLUDE_DIRECTORY)" }
+
+    filter { "configurations:Debug", "system:not windows" }     -- Linux Debug
+        links { "RobotinoLib-d" }
+    filter { "configurations:Release", "system:not windows" }   -- Linux Release
+        links { "RobotinoLib-r" }
+    filter { "configurations:Deploy", "system:not windows" }    -- Linux Deploy
+        links { "RobotinoLib" }
+
+    filter { "system:not windows" }     -- Linux
+        links { "rec_robotino_api2", "rec_robotino_rpc", "rec_rpc" }
         includedirs { _SCRIPT_DIR .. "/include", "/usr/local/include/" }
         libdirs "/usr/local/bin/"
-        links { "rec_robotino_api2", "RobotinoLib" }
+        runpathdirs "/usr/local/bin/"
+
     filter {}
     
     -- Main source files
