@@ -44,9 +44,7 @@ This library was tested on Debian 11
  
 #### Requirements
 
- - git: `sudo apt install git`
- - make: `sudo apt install build-essential`
- - Qt5: `sudo apt install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools`
+ - [RobotinoLib](https://github.com/HerrNamenlos123/RobotinoLib) - Must be fully built and installed
 
 #### Building
 
