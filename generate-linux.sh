@@ -48,8 +48,8 @@ echo Generating project $_projectname
 "$SCRIPT_DIR/premake5/linux/premake5" $_generator --file="$SCRIPT_DIR/premake5.lua" --projectname=$_projectname
 
 echo -e "\e[32mGeneration successful, next steps:\e[0m"
-echo " - to build: 'cd build && make'"
-echo " - to install: 'sudo ./install-linux.sh' (use 'cd ..' after building)"
+echo " - to build: 'cd build' and 'make'"
+echo " - to execute: 'cd bin/YOUR_CONFIG' and './PROJECT_NAME'"
 
 mkdir -p $SCRIPT_DIR/build/name/
 touch $SCRIPT_DIR/build/name/$_projectname
