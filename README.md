@@ -50,7 +50,7 @@ This library was tested on Debian 11
 
  - Clone your Github repository which was generated from this template and navigate to it in the terminal
  - Generate the project files: `./generate-linux.sh`
- - Build the library: `cd build` and `make`
+ - Build the executable: `cd build` and `make`
  - Run the executable: 'cd bin/YOUR_CONFIG' and './PROJECT_NAME'
  - That's it, now it's your turn to start developing by modifying `src/RobotinoAction.cpp`
 
