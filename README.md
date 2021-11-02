@@ -32,11 +32,10 @@ For this method you must have a Github account and must be logged in. If you do 
  + In the File Explorer, navigate to the target directory, a location where it can stay without being deleted accidentally  
    (e.g. `C:\dev\` or `Documents`, not the `Download` folder)
  + Type `cmd` in the address bar at the top and press Enter, a command line should pop up
- + Press this button in your own Github repository to copy the path
+ + Click the green `Code`-button in your own repository and copy the path
  + Type `git clone ` in the console and right-click to paste, then press Enter.  
    Example: `git clone https://github.com/YOUR_NAME/YOUR_PROJECT.git` 
  + When the command has finished, close the console and navigate to the new folder in the File Explorer
-<img src="https://user-images.githubusercontent.com/44909261/139955315-ebe65a3d-c92d-4e49-ac45-1ed801443cb7.png" alt="drawing" width="200" align="right">
  
 #### Downloading the ZIP-file
 
