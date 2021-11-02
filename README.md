@@ -14,7 +14,7 @@ This is a template project for the [RobotinoLib](https://github.com/HerrNamenlos
 ### Generating from the template (Recommended)
   
 This repository is a template, which makes it very easy for you to create your own Github repository from this template.
-For this method you must have a Github account and must be logged in. If you do not want to use git for your project, go to [Downloading the ZIP-file](#Downloading-the-ZIP-file).
+For this method you must have a Github account and must be logged in. If you do not want to use git for your project, simply download the zip-file of this repository, extract it and continue with building.
  
  - Use the green button at the top of this page to generate a repository from this template.
  - Now, clone your repository and build it
@@ -28,8 +28,6 @@ For this method you must have a Github account and must be logged in. If you do 
  - [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/de/downloads/) - Other IDEs can be used by editing `generate-win.bat`
  - [git](https://git-scm.com/downloads) - Recommended for cloning the repository
  - [RobotinoLib](https://github.com/HerrNamenlos123/RobotinoLib) - Must be fully built and installed
- 
-Alternatively, simply download the zip-file of this repository and extract it.
   
 #### Building:
  - Double-click the file `generate-win.bat` and enter the name of your project, this will generate everything and open Visual Studio for you
