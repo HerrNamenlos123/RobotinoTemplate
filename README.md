@@ -27,7 +27,6 @@ This repository is a template, which makes it very easy for you to create your o
 For this method you must have a Github account and must be logged in. If you do not want to use git for your project, go to [Downloading the ZIP-file](#Downloading-the-ZIP-file).
  
 ##### Part 1:
-<img src="https://user-images.githubusercontent.com/44909261/139955315-ebe65a3d-c92d-4e49-ac45-1ed801443cb7.png" alt="drawing" width="280" align="right">
  + Click the green `Use this template`-button at the top of this page, enter a name, choose Public or Private and click Create
  + Now you have your own Github repository
  + In the File Explorer, navigate to the target directory, a location where it can stay without being deleted accidentally  
@@ -37,6 +36,7 @@ For this method you must have a Github account and must be logged in. If you do 
  + Type `git clone ` in the console and right-click to paste, then press Enter.  
    Example: `git clone https://github.com/YOUR_NAME/YOUR_PROJECT.git` 
  + When the command has finished, close the console and navigate to the new folder in the File Explorer
+<img src="https://user-images.githubusercontent.com/44909261/139955315-ebe65a3d-c92d-4e49-ac45-1ed801443cb7.png" alt="drawing" width="200" align="right">
  
 #### Downloading the ZIP-file
 
