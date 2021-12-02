@@ -1,0 +1,3 @@
+[submodule "modules/RobotinoLib"]
+	path = modules/RobotinoLib
+	url = https://github.com/HerrNamenlos123/RobotinoLib.git
