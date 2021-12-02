@@ -1,14 +1,57 @@
-# RobotinoTest
+
+<img src="https://ip.festo-didactic.com/InfoPortal/Robotino/Images/4_Robotino.jpg" alt="drawing" width="200" align="right"/></p>
+
+# ✨RobotinoTemplate✨
 
 sheesh
 
-# Building
+## What is this?
 
-## Windows
-+ [Install Robotino API 2 for Visual Studio 2019](https://wiki.openrobotino.org/index.php?title=API2)
-+ `git clone --recursive https://github.com/HerrNamenlos123/RobotinoTemplate.git`
-+ Double-click ```generate-win.bat```
-+ Open `RobotinoTest.sln` file in Visual Studio 2019 and build
+This is a template project for the [RobotinoLib](https://github.com/HerrNamenlos123/RobotinoLib). The goal is to make working with the Festo Robotino as easy as possible.
 
-## Linux
-+ Not implemented/tested yet
+## How to use
+
+### Generating from the template (Recommended)
+  
+This repository is a template, which makes it very easy for you to create your own Github repository from this template.
+For this method you must have a Github account and must be logged in. If you do not want to use git for your project, simply download the zip-file of this repository, extract it and continue with building.
+ 
+ - Use the green button at the top of this page to generate a repository from this template.
+ - Now, clone your repository and build it
+
+### Windows
+<details>
+<summary>Installation instructions for Windows 64-bit</summary>
+
+#### Requirements
+
+ - [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/de/downloads/) - Other IDEs can be used by editing `generate-win.bat`
+ - [git](https://git-scm.com/downloads) - Recommended for cloning the repository
+ - [RobotinoLib](https://github.com/HerrNamenlos123/RobotinoLib) - Must be fully built and installed
+  
+#### Building:
+ - Double-click the file `generate-win.bat` and enter the name of your project, this will generate everything and open Visual Studio for you
+ - That's it, simply press `Ctrl+F5` to compile and run the project. Now it's your turn to start developing by modifying `src/RobotinoAction.cpp`
+
+ 
+</details>
+
+### Linux
+<details>
+<summary>Installation instructions for Linux distributions</summary><br \>
+
+This library was tested on Debian 11
+ 
+#### Requirements
+
+ - [RobotinoLib](https://github.com/HerrNamenlos123/RobotinoLib) - Must be fully built and installed
+
+#### Building
+
+ - Clone your Github repository which was generated from this template and navigate to it in the terminal
+ - Generate the project files: `./generate-linux.sh`
+ - Build the executable: `cd build` and `make`
+ - Run the executable: 'cd bin/YOUR_CONFIG' and './PROJECT_NAME'
+ - That's it, now it's your turn to start developing by modifying `src/RobotinoAction.cpp`
+
+</details>
