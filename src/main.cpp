@@ -1,5 +1,5 @@
 
-#include "Robotino.h"
+#include "Robotino/Robotino.h"
 #include "RobotinoAction.h"
 
 #pragma warning( disable : 4101 )	// Suppress warning about unused variable 'e' (Only in this .cpp file)

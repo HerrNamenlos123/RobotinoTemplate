@@ -1,9 +1,9 @@
 
-#include "Robotino.h"
+#include "Robotino/Robotino.h"
 
 void RobotinoAction() {
 	Robotino::Robotino robotino;
-    robotino.Connect("127.0.0.1");
+    robotino.Connect("10.0.0.9");
 
     while (!robotino.GetBumper()) {
         robotino.DriveDirect(0.1f, 0.0f, 0.0f);
